@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PRA-C3-Django-Sander-Chris-Aleksander (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PRA-C3-Django-Sander-Chris-Aleksander (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
