@@ -21,29 +21,11 @@ namespace PRA_C3_DJ_SA_CH_AL
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class RegisterWindow : Window
     {
-        public MainWindow()
+        public RegisterWindow()
         {
             this.InitializeComponent();
         }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Activate();
-
-            // Closes old window
-            this.Close();
-        }
-
-        private void RegisterButton_Click(object obj, RoutedEventArgs e) { 
-            RegisterWindow registerWindow = new RegisterWindow();
-            registerWindow.Activate();
-
-            // Closes old window
-            this.Close();
-        }
-
     }
 }
