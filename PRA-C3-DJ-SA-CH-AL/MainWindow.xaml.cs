@@ -27,10 +27,5 @@ namespace PRA_C3_DJ_SA_CH_AL
         {
             this.InitializeComponent();
         }
-
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-        }
     }
 }
