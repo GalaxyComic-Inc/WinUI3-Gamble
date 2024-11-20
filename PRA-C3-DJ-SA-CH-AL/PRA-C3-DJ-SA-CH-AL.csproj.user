@@ -5,10 +5,13 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
-    <Page Update="RegisterWindow.xaml">
+    <Page Update="RegisterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="LoginWindow.xaml">
+    <Page Update="LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <None Update="MainWindow.xaml">

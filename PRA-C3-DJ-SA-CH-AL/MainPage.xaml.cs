@@ -19,13 +19,26 @@ using Windows.Foundation.Collections;
 namespace PRA_C3_DJ_SA_CH_AL
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegisterWindow : Window
+    public sealed partial class MainPage : Page
     {
-        public RegisterWindow()
+        // Navigate to MainPage
+        public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        // Navigate to LoginPage
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LoginPage));  // Navigate to LoginPage
+        }
+
+        // Navigate to RegisterPage
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));  // Navigate to RegisterPage
         }
     }
 }

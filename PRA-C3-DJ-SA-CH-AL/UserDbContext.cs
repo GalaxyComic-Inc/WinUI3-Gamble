@@ -19,7 +19,7 @@ namespace PRA_C3_DJ_SA_CH_AL
                 "port=3306;" +                                                      // Server port
                 "user=root;" +                                                      // Username
                 "password=;" +                                                      // Password
-                "database=django_test;"                                             // Database name
+                "database=PRA-C3-DJ-SA-CH-AL;"                                      // Database name
                 , Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql") // Version
                 );
         }
