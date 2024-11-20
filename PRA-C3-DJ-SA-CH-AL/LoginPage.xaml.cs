@@ -63,5 +63,9 @@ namespace PRA_C3_DJ_SA_CH_AL
                 ResultText.Text = "Invalid password or User not found.";
             }
         }
+        private void HomePageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

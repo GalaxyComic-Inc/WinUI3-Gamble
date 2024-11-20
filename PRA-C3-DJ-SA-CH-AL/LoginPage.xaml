@@ -11,6 +11,8 @@
 
     <Grid Background="#281733">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="Login" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Return" Width="100" Margin="5" Click="HomePageButton_Click" />
             <TextBlock x:Name="ResultText" Text="" Margin="10" />
             <TextBox x:Name="UserNameTextBox" Width="200" Margin="10" PlaceholderText="Username" />
             <PasswordBox x:Name="PasswordBox" Width="200" Margin="10" PlaceholderText="Password" />

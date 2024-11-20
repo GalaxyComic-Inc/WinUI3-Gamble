@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using PRA_C3_DJ_SA_CH_AL.Models;
+using PRA_C3_DJ_SA_CH_AL;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
@@ -56,12 +57,18 @@ namespace PRA_C3_DJ_SA_CH_AL
                 UserName = userName
             };
             newUser.SetPassword(password);  // Hash the password
+            newUser.Credits = 50; // default credits amount
 
             _dbContext.Users.Add(newUser);
             await _dbContext.SaveChangesAsync();  // Save to MySQL database
 
             ResultText.Text = "User registered successfully!";
             Frame.Navigate(typeof(OverviewPage));  // Navigate to OverviewPage
+        }
+
+        private void HomePageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
         }
     }
 }

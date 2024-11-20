@@ -13,7 +13,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Models
         public string PasswordHashed { get; set; }
         public int Credits { get; set; }
 
-
+        
         // Method to hash the password
         public void SetPassword(string password)
         {
