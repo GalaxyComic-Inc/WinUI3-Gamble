@@ -29,8 +29,5 @@ namespace PRA_C3_DJ_SA_CH_AL
             // Initialize the Frame for navigation (if needed)
             MainFrame.Navigate(typeof(MainPage));
         }
-
-        
-
     }
 }

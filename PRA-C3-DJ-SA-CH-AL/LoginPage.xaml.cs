@@ -44,6 +44,8 @@ namespace PRA_C3_DJ_SA_CH_AL
                 .Where(u => u.UserName == userName)
                 .FirstOrDefaultAsync();
 
+            var userId = user?.Id;
+
             if (user == null)
             {
                 ResultText.Text = "Invalid password or User not found.";
@@ -54,6 +56,7 @@ namespace PRA_C3_DJ_SA_CH_AL
             if (user.VerifyPassword(password))
             {
                 ResultText.Text = "Login successful!";
+                Frame.Navigate(typeof(OverviewPage), user);  // Navigate to OverviewPage
             }
             else
             {

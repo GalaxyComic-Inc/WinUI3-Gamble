@@ -11,10 +11,15 @@
     
     <Grid Background="#281733">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+            
+            <TextBlock  Text="Welcome to 4S Gamble Application" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+
             <!-- First Button -->
             <Button Content="Login"
             Width="150"
             Height="40"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
             Background="Purple"
             Foreground="White"
             FontWeight="Bold"
@@ -26,6 +31,8 @@
             <Button Content="Register"
             Width="150"
             Height="40"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
             Background="Purple"
             Foreground="White"
             FontWeight="Bold"

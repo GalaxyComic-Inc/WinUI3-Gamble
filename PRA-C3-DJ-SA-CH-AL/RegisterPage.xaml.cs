@@ -61,6 +61,7 @@ namespace PRA_C3_DJ_SA_CH_AL
             await _dbContext.SaveChangesAsync();  // Save to MySQL database
 
             ResultText.Text = "User registered successfully!";
+            Frame.Navigate(typeof(OverviewPage));  // Navigate to OverviewPage
         }
     }
 }
