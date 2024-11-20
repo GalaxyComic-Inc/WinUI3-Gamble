@@ -5,10 +5,9 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using PRA_C3_DJ_SA_CH_AL.Models;
 using System;
+using PRA_C3_DJ_SA_CH_AL.Models;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,10 +22,10 @@ namespace PRA_C3_DJ_SA_CH_AL
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OverviewPage : Page
+    public sealed partial class BettingPage : Page
     {
         private User CurrentUser { get; set; }
-        public OverviewPage()
+        public BettingPage()
         {
             this.InitializeComponent();
         }

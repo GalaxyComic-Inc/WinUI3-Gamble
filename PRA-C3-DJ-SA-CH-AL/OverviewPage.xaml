@@ -10,6 +10,105 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#281733">
-        <TextBlock x:Name="ResultText" Text="" Margin="10" />
+        <!-- Navigation Buttons on the Top Left -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <!-- Button 1: First Navigation Button -->
+            <Button Content="Overview" Click="OverviewButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="0,0,10,0" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
+
+            <!-- Button 2: Second Navigation Button -->
+            <Button Content="Betting" Click="BettingButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
+        </StackPanel>
+
+        <!-- Upcoming Matches Section with Border -->
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="10" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,150,10,0">
+            <StackPanel>
+                <!-- Section Header -->
+                <TextBlock Text="Previous Bets" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="White"/>
+
+                <!-- ListView for Upcoming Matches -->
+                <ListView Background="#3D2B49" Foreground="White" Padding="10">
+                    <!-- ListViewItem for Match 1 -->
+                    <ListViewItem>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Match Details StackPanel -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Match 1: Team A vs Team B" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                            </StackPanel>
+
+                            <!-- Bet Amount StackPanel -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="$50" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- ListViewItem for Match 2 -->
+                    <ListViewItem>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Match Details StackPanel -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Match 2: Team C vs Team D" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                            </StackPanel>
+
+                            <!-- Bet Amount StackPanel -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="$75" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- ListViewItem for Match 3 -->
+                    <ListViewItem>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Match Details StackPanel -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Match 3: Team E vs Team F" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                            </StackPanel>
+
+                            <!-- Bet Amount StackPanel -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="$100" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- ListViewItem for Match 4 -->
+                    <ListViewItem>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Match Details StackPanel -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Match 4: Team G vs Team H" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                            </StackPanel>
+
+                            <!-- Bet Amount StackPanel -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="$60" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- ListViewItem for Match 5 -->
+                    <ListViewItem>
+                        <StackPanel Orientation="Vertical">
+                            <!-- Match Details StackPanel -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Match 5: Team I vs Team J" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                            </StackPanel>
+
+                            <!-- Bet Amount StackPanel -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="$80" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Border>
+
+        <!-- Username and Credits in the top-right corner -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+            <!-- Username or Credits (Empty TextBlock for placeholder) -->
+            <TextBlock x:Name="ResultText" Text="" VerticalAlignment="Top" Margin="5,0,10,0" FontSize="14" Foreground="White"/>
+        </StackPanel>
     </Grid>
 </Page>
