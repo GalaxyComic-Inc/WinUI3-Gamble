@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.System;
 
 namespace PRA_C3_DJ_SA_CH_AL
 {
     public class UserDbContext : DbContext
     {
         public DbSet<Models.User> Users { get; set; }
+        public DbSet<Models.Bets> Bets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,12 +16,13 @@ namespace PRA_C3_DJ_SA_CH_AL
                 "password=;" +                                                      // Password
                 "database=PRA-C3-DJ-SA-CH-AL;"                                      // Database name
                 , Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql") // Version
-                );
+            );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // Additional configurations (if needed)
         }
     }
 }

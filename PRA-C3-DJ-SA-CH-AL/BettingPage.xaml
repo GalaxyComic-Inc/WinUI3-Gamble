@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="PRA_C3_DJ_SA_CH_AL.BettingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -6,23 +5,58 @@
     xmlns:local="using:PRA_C3_DJ_SA_CH_AL"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid Background="#281733">
-        <!-- Navigation Buttons on the Top Left -->
+        <!-- Navigation Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
-            <!-- Button 1: First Navigation Button -->
-            <Button Content="Overview" Click="OverviewButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="0,0,10,0" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
-
-            <!-- Button 2: Second Navigation Button -->
-            <Button Content="Betting" Click="BettingButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
+            <Button Content="Overview" Click="OverviewButton_Click"
+                Width="100" Margin="0,0,10,0" Foreground="White" Background="#3D2B49" BorderBrush="Gray" />
+            <Button Content="Betting" Click="BettingButton_Click"
+                Width="100" Foreground="White" Background="#3D2B49" BorderBrush="Gray" />
         </StackPanel>
 
-        <!-- Username and Credits in the top-right corner -->
+        <!-- Betting Form -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+            <!-- Match ID -->
+            <TextBlock Text="Match ID:" FontSize="16" Foreground="White" />
+            <TextBox x:Name="MatchIdInput" PlaceholderText="Enter Match ID" Background="#3D2B49" Foreground="White" BorderBrush="Gray" Width="200" />
+
+            <!-- Bet Amount -->
+            <TextBlock Text="Bet Amount:" FontSize="16" Foreground="White" Margin="0,10,0,0" />
+            <TextBox x:Name="BetAmountInput" PlaceholderText="Enter Amount" Background="#3D2B49" Foreground="White" BorderBrush="Gray" Width="200" />
+
+            <!-- Player Guess -->
+            <TextBlock Text="Player Guess (1 = Team1, 2 = Team2, 3 = Draw):" FontSize="16" Foreground="White" Margin="0,10,0,0" />
+            <TextBox x:Name="PlayerGuessInput" PlaceholderText="Enter Player Guess" Background="#3D2B49" Foreground="White" BorderBrush="Gray" Width="200" />
+
+            <!-- Winning Guess (Dropdown) -->
+            <TextBlock Text="Winning Guess (Team1, Team2, or Draw):" FontSize="16" Foreground="White" Margin="0,10,0,0" VerticalAlignment="Center" />
+            <ComboBox x:Name="WinningGuessComboBox" Background="#3D2B49" Foreground="White" BorderBrush="Gray" Width="200" VerticalAlignment="Center">
+                <ComboBoxItem Content="Team1" Tag="1" IsSelected="True" />
+                <ComboBoxItem Content="Team2" Tag="2" />
+                <ComboBoxItem Content="Draw" Tag="3" />
+            </ComboBox>
+
+            <!-- Save Button -->
+            <Button Content="Save Bet" Click="SaveBet_Click" HorizontalAlignment="Center" Width="150" Foreground="White" Background="#5A4F81" BorderBrush="Gray" Margin="0,10,0,0" />
+        </StackPanel>
+
+        <!-- Status Messages -->
+        <TextBlock x:Name="ApiData"
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+               FontSize="16" Foreground="White" TextWrapping="Wrap" Margin="10" />
+
+        <!-- Username and Credits -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
-            <!-- Username or Credits (Empty TextBlock for placeholder) -->
-            <TextBlock x:Name="ResultText" Text="" VerticalAlignment="Top" Margin="5,0,10,0" FontSize="14" Foreground="White"/>
+            <TextBlock x:Name="ResultText"
+                   Text="Name: JohnDoe | Credits: $1000"
+                   FontSize="14" Foreground="White" Margin="5,0,10,0" />
         </StackPanel>
     </Grid>
+
+
+
+
+
 </Page>

@@ -63,5 +63,67 @@ namespace PRA_C3_DJ_SA_CH_AL
                 Frame.Navigate(typeof(BettingPage), CurrentUser);
             }
         }
+
+        private void SaveBet_Click(object sender, RoutedEventArgs e)
+        {
+            // Validate the bet amount
+            if (decimal.TryParse(BetAmountInput.Text, out decimal betAmount))
+            {
+                // Convert betAmount to int
+                int betAmountInt = (int)betAmount;
+
+                if (betAmountInt <= 0)
+                {
+                    ApiData.Text = "Bet amount must be greater than 0.";
+                    return;
+                }
+
+                // Check if the user has enough credits
+                if (betAmountInt > CurrentUser.Credits)
+                {
+                    ApiData.Text = "You do not have enough credits to place this bet.";
+                    return;
+                }
+
+                // Get the player guess and the winning guess
+                string playerGuess = PlayerGuessInput.Text;
+                var winningGuess = WinningGuessComboBox.SelectedItem as ComboBoxItem;
+                string winningTeam = winningGuess?.Content.ToString();
+
+                if (string.IsNullOrEmpty(playerGuess) || winningGuess == null)
+                {
+                    ApiData.Text = "Please fill in all the fields.";
+                    return;
+                }
+
+                // Assuming the bet is placed successfully, update the user's credits
+                CurrentUser.Credits -= betAmountInt;
+
+                // Display the result and the updated credits
+                ApiData.Text = $"Bet placed: ${betAmountInt} on {winningTeam}. \nRemaining Credits: {CurrentUser.Credits}";
+
+                // Save this bet to the database
+                using (var dbContext = new UserDbContext())
+                {
+                    var newBet = new Bets
+                    {
+                        MatchId = 1, // Example MatchId, set accordingly
+                        UserId = CurrentUser.Id, // Assuming UserId is available
+                        Amount = betAmountInt,
+                        PlayerGuess = int.Parse(playerGuess), // Assuming player guess is an integer
+                        WinningGuess = winningTeam, // Convert string to integer (1 = Team1, 2 = Team2, 3 = Draw)
+                        BetTime = DateTime.Now
+                    };
+
+                    dbContext.Bets.Add(newBet);
+                    dbContext.SaveChanges(); // Commit the changes to the database
+                }
+            }
+            else
+            {
+                ApiData.Text = "Invalid bet amount. Please enter a valid number.";
+            }
+        }
+
     }
 }

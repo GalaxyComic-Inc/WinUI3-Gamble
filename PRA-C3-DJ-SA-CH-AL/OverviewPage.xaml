@@ -1,113 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="PRA_C3_DJ_SA_CH_AL.OverviewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PRA_C3_DJ_SA_CH_AL"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#281733">
-        <!-- Navigation Buttons on the Top Left -->
+        <!-- Navigation Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
-            <!-- Button 1: First Navigation Button -->
-            <Button Content="Overview" Click="OverviewButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="0,0,10,0" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
-
-            <!-- Button 2: Second Navigation Button -->
-            <Button Content="Betting" Click="BettingButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Foreground="White" Background="#3D2B49" BorderBrush="Gray"/>
+            <Button Content="Overview" Click="OverviewButton_Click" Width="100" Margin="0,0,10,0" Foreground="White" Background="#3D2B49"/>
+            <Button Content="Betting" Click="BettingButton_Click" Width="100" Foreground="White" Background="#3D2B49"/>
         </StackPanel>
 
-        <!-- Upcoming Matches Section with Border -->
+        <!-- Bets Section -->
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="10" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,150,10,0">
             <StackPanel>
-                <!-- Section Header -->
+                <!-- Bets Header -->
                 <TextBlock Text="Previous Bets" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="White"/>
 
-                <!-- ListView for Upcoming Matches -->
-                <ListView Background="#3D2B49" Foreground="White" Padding="10">
-                    <!-- ListViewItem for Match 1 -->
-                    <ListViewItem>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Match Details StackPanel -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Match 1: Team A vs Team B" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
+                <!-- ListView to display bets -->
+                <ListView x:Name="BetsListView" Background="#3D2B49" Foreground="White" Padding="10">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding BetAmount}" FontSize="16" Foreground="LightGreen"/>
+                                <TextBlock Text="{Binding BetTime}" FontSize="14" Foreground="White"/>
                             </StackPanel>
-
-                            <!-- Bet Amount StackPanel -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBlock Text="$50" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <!-- ListViewItem for Match 2 -->
-                    <ListViewItem>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Match Details StackPanel -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Match 2: Team C vs Team D" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
-                            </StackPanel>
-
-                            <!-- Bet Amount StackPanel -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBlock Text="$75" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <!-- ListViewItem for Match 3 -->
-                    <ListViewItem>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Match Details StackPanel -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Match 3: Team E vs Team F" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
-                            </StackPanel>
-
-                            <!-- Bet Amount StackPanel -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBlock Text="$100" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <!-- ListViewItem for Match 4 -->
-                    <ListViewItem>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Match Details StackPanel -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Match 4: Team G vs Team H" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
-                            </StackPanel>
-
-                            <!-- Bet Amount StackPanel -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBlock Text="$60" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <!-- ListViewItem for Match 5 -->
-                    <ListViewItem>
-                        <StackPanel Orientation="Vertical">
-                            <!-- Match Details StackPanel -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Match 5: Team I vs Team J" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="18" Foreground="White"/>
-                            </StackPanel>
-
-                            <!-- Bet Amount StackPanel -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBlock Text="$80" VerticalAlignment="Center" FontSize="16" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListViewItem>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </Border>
 
-        <!-- Username and Credits in the top-right corner -->
+        <!-- User info -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
-            <!-- Username or Credits (Empty TextBlock for placeholder) -->
             <TextBlock x:Name="ResultText" Text="" VerticalAlignment="Top" Margin="5,0,10,0" FontSize="14" Foreground="White"/>
         </StackPanel>
     </Grid>

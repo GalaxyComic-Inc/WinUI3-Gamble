@@ -1,52 +1,56 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
+using Microsoft.EntityFrameworkCore;
 using PRA_C3_DJ_SA_CH_AL.Models;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System.Threading.Tasks;
 
 namespace PRA_C3_DJ_SA_CH_AL
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class OverviewPage : Page
     {
         private User CurrentUser { get; set; }
+        private UserDbContext _dbContext;
+
         public OverviewPage()
         {
             this.InitializeComponent();
+            _dbContext = new UserDbContext();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            // Retrieve the passed 'user' object
+            // Retrieve the current user from the navigation parameter
             if (e.Parameter is User user)
             {
                 CurrentUser = user;
-
-                // Update the UI with CurrentUser data
                 ResultText.Text = $"Name: {CurrentUser.UserName} \nCredits: {CurrentUser.Credits}";
+
+                // Load the user's bets
+                await LoadBets(CurrentUser.Id);
             }
             else
             {
                 ResultText.Text = "User data is missing or invalid.";
             }
+        }
+
+        private async Task LoadBets(int userId)
+        {
+            // Retrieve the bets for the user from the database
+            var bets = await _dbContext.Bets
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
+
+            // Bind the bets to the ListView
+            BetsListView.ItemsSource = bets.Select(b => new
+            {
+                BetAmount = b.Amount,
+                BetTime = b.BetTime.ToString("g") // Format the bet time
+            }).ToList();
         }
 
         private void OverviewButton_Click(object sender, RoutedEventArgs e)
