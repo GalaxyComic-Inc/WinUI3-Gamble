@@ -12,7 +12,7 @@ using PRA_C3_DJ_SA_CH_AL;
 namespace PRA_C3_DJ_SA_CH_AL.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20241125093528_InitialCreate")]
+    [Migration("20241125095729_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
