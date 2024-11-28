@@ -12,7 +12,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Models
         public int MatchId { get; set; }
         public int Minute { get; set; }
         public int PlayerId { get; set; }
-        public int TeamId { get; set; }
+        public int PlayerTeam { get; set; }
         public string PlayerName { get; set; }
     }
 }
