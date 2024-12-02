@@ -12,7 +12,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Data
         private static readonly HttpClient _httpClient = new HttpClient();
 
         // Base URL should ideally come from a configuration file or environment variable
-        private const string BaseUrl = "http://127.0.0.1:8000";
+        private const string BaseUrl = "https://yourapi.com";
 
         static DataApi()
         {
@@ -66,7 +66,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Data
         /// <returns>A list of matches.</returns>
         public async Task<List<Matches>> GetMatchesAsync()
         {
-            return await GetDataAsync<List<Matches>>("/api/matches");
+            return await GetDataAsync<List<Matches>>("/API/MATCHES.PHP");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Data
         /// <returns>A list of results.</returns>
         public async Task<List<Results>> GetResultsAsync()
         {
-            return await GetDataAsync<List<Results>>("/api/results");
+            return await GetDataAsync<List<Results>>("/API/RESULTS.PHP");
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Data
         /// <returns>A list of goals for the match.</returns>
         public async Task<List<Goals>> GetGoalsAsync(int matchId)
         {
-            return await GetDataAsync<List<Goals>>($"/api/goals/match_id={matchId}");
+            return await GetDataAsync<List<Goals>>($"/API/GOALS.PHP?MATCH_ID={matchId}");
         }
 
         /// <summary>

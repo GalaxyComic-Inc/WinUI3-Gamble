@@ -10,7 +10,7 @@ namespace PRA_C3_DJ_SA_CH_AL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(
-                "server=localhost;" +                                 // Server name
+                "server=localhost;" +                                               // Server name
                 "port=3306;" +                                                      // Server port
                 "user=root;" +                                                      // Username
                 "password=;" +                                                      // Password
