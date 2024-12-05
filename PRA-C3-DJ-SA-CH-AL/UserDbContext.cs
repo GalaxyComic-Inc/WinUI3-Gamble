@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PRA_C3_DJ_SA_CH_AL.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PRA_C3_DJ_SA_CH_AL
 {
@@ -23,6 +27,13 @@ namespace PRA_C3_DJ_SA_CH_AL
         {
             base.OnModelCreating(modelBuilder);
             // Additional configurations (if needed)
+        }
+
+        public async Task<List<Bets>> GetUserBetsAsync(int userId)
+        {
+            return await Bets
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
         }
     }
 }

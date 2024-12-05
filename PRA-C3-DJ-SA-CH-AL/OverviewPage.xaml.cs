@@ -29,14 +29,15 @@ namespace PRA_C3_DJ_SA_CH_AL
         // ----------------------------------------------------------------------------
 
         /// <summary>
-        /// Handles the button click to load matches from the API.
+        /// Fetches matches from the API and binds them to the UI on page load.
         /// </summary>
-        private async void LoadMatches_Click(object sender, RoutedEventArgs e)
+        private async Task LoadMatchesAsync()
         {
             try
             {
                 // Fetch matches from the API
                 List<Matches> matches = await _dataApi.GetMatchesAsync();
+                List<Results> results = await _dataApi.GetResultsAsync();
 
                 // Bind matches to the ListView
                 MatchesList.ItemsSource = matches;
@@ -74,10 +75,13 @@ namespace PRA_C3_DJ_SA_CH_AL
                     CurrentUser = user;
 
                     // Display user details
-                    ResultText.Text = $"Name: {CurrentUser.UserName}\nCredits: {CurrentUser.Credits}";
+                    ResultText.Text = $"Name: {CurrentUser.UserName} | Credits: {CurrentUser.Credits}";
 
                     // Load the user's bets
                     await LoadBets(CurrentUser.Id);
+
+                    // Load matches when the page starts
+                    await LoadMatchesAsync();
                 }
                 else
                 {
