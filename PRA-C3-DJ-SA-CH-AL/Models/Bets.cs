@@ -13,6 +13,7 @@ namespace PRA_C3_DJ_SA_CH_AL.Models
         public int UserId { get; set; }
         public int Amount { get; set; }
         public int PlayerGuess {  get; set; }
+        public string PlayerGuessName { get; set; }
         public bool Payed { get; set; } = false;
         public DateTime BetTime { get; set; } = DateTime.Now;
     }

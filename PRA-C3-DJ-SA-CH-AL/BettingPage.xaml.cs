@@ -17,6 +17,9 @@ namespace PRA_C3_DJ_SA_CH_AL
         private readonly DataApi _dataApi;
         private List<Matches> _cachedMatches;
 
+        // Store the name of the guessed team or "Draw"
+        public string PlayerGuessName { get; private set; }
+
         public BettingPage()
         {
             this.InitializeComponent();
@@ -27,15 +30,10 @@ namespace PRA_C3_DJ_SA_CH_AL
         {
             base.OnNavigatedTo(e);
 
-            // Retrieve the passed 'user' object
             if (e.Parameter is User user)
             {
                 CurrentUser = user;
-
-                // Update the UI with CurrentUser data
                 ResultText.Text = $"Name: {CurrentUser.UserName} | Credits: {CurrentUser.Credits}";
-
-                // Fetch available matches from the API
                 await LoadMatchesAsync();
             }
             else
@@ -48,18 +46,15 @@ namespace PRA_C3_DJ_SA_CH_AL
         {
             try
             {
-                // Fetch matches from API and cache them
                 _cachedMatches = await _dataApi.GetMatchesAsync();
 
                 if (_cachedMatches.Any())
                 {
-                    // Populate the ComboBox with match options
                     WinningGuessComboBox.ItemsSource = _cachedMatches.Select(m => new ComboBoxItem
                     {
                         Content = $"{m.Team1Name} vs {m.Team2Name}",
                         Tag = m.Id
                     }).ToList();
-
                     ApiData.Text = "Matches loaded successfully.";
                 }
                 else
@@ -77,16 +72,13 @@ namespace PRA_C3_DJ_SA_CH_AL
         {
             try
             {
-                // Clear existing RadioButtons
                 PlayerGuessRadioPanel.Children.Clear();
 
-                // Get selected match
                 if (WinningGuessComboBox.SelectedItem is ComboBoxItem selectedItem)
                 {
                     int matchId = (int)selectedItem.Tag;
-
-                    // Find the match details
                     var selectedMatch = _cachedMatches.FirstOrDefault(m => m.Id == matchId);
+
                     if (selectedMatch == null)
                     {
                         ApiData.Text = "Match details not found.";
@@ -97,7 +89,7 @@ namespace PRA_C3_DJ_SA_CH_AL
                     PlayerGuessRadioPanel.Children.Add(new RadioButton
                     {
                         Content = selectedMatch.Team1Name,
-                        Tag = selectedMatch.Team1Id, // Use Team1Id as the Tag
+                        Tag = selectedMatch.Team1Id,
                         Margin = new Thickness(5)
                     });
 
@@ -105,7 +97,7 @@ namespace PRA_C3_DJ_SA_CH_AL
                     PlayerGuessRadioPanel.Children.Add(new RadioButton
                     {
                         Content = selectedMatch.Team2Name,
-                        Tag = selectedMatch.Team2Id, // Use Team2Id as the Tag
+                        Tag = selectedMatch.Team2Id,
                         Margin = new Thickness(5)
                     });
 
@@ -113,8 +105,7 @@ namespace PRA_C3_DJ_SA_CH_AL
                     PlayerGuessRadioPanel.Children.Add(new RadioButton
                     {
                         Content = "Draw",
-                        Tag = 0, // Use 0 to represent a draw
-                        
+                        Tag = 0,
                         Margin = new Thickness(5)
                     });
                 }
@@ -162,6 +153,9 @@ namespace PRA_C3_DJ_SA_CH_AL
 
             int playerGuess = (int)selectedRadio.Tag;
 
+            // Save the selected team's name or "Draw" in PlayerGuessName
+            PlayerGuessName = selectedRadio.Content.ToString();
+
             // Deduct credits and save the bet
             CurrentUser.Credits -= (int)betAmount;
             try
@@ -175,6 +169,7 @@ namespace PRA_C3_DJ_SA_CH_AL
                         UserId = CurrentUser.Id,
                         Amount = (int)betAmount,
                         PlayerGuess = playerGuess,
+                        PlayerGuessName = PlayerGuessName, // Save the guessed team's name
                         BetTime = DateTime.Now
                     });
 
@@ -182,7 +177,8 @@ namespace PRA_C3_DJ_SA_CH_AL
                     await dbContext.SaveChangesAsync();
                 }
 
-                ApiData.Text = $"Bet placed successfully! Remaining credits: {CurrentUser.Credits}.";
+                ResultText.Text = $"Name: {CurrentUser.UserName} | Credits: {CurrentUser.Credits}";
+                ApiData.Text = $"Bet placed successfully! You guessed: {PlayerGuessName}. Remaining credits: {CurrentUser.Credits}.";
             }
             catch (Exception ex)
             {

@@ -56,10 +56,23 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical" Padding="5">
+                                        <!-- Bet Amount -->
                                         <TextBlock Text="{Binding BetAmount}" FontSize="18" Foreground="LightGreen" />
+
+                                        <!-- Bet Time -->
                                         <TextBlock Text="{Binding BetTime}" FontSize="14" Foreground="White"/>
+
+                                        <!-- Team Bet On -->
+                                        <TextBlock Text="{Binding CorrectBet}" FontSize="16" Foreground="LightBlue" HorizontalAlignment="Center" />
+
+                                        <!-- Guessed Team -->
+                                        <TextBlock Text="{Binding PlayerGuessName}" FontSize="16" Foreground="Orange" HorizontalAlignment="Center" />
+
+                                        <!-- Bet Correctness -->
+                                        <TextBlock Text="{Binding WinnerName}" FontSize="16" Foreground="Yellow" HorizontalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
+
                             </ListView.ItemTemplate>
                         </ListView>
                     </ScrollViewer>

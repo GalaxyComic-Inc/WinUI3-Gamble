@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRA_C3_DJ_SA_CH_AL;
 
@@ -11,9 +12,11 @@ using PRA_C3_DJ_SA_CH_AL;
 namespace PRA_C3_DJ_SA_CH_AL.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241205122325_AddMatchDateToMatchResults")]
+    partial class AddMatchDateToMatchResults
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +47,6 @@ namespace PRA_C3_DJ_SA_CH_AL.Migrations
 
                     b.Property<int>("PlayerGuess")
                         .HasColumnType("int");
-
-                    b.Property<string>("PlayerGuessName")
-                        .HasColumnType("longtext");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
